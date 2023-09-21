@@ -4,7 +4,7 @@ class Node {
     this.value = value;
   }
 }
-class LinkedList {
+class LinkedListWithTail {
   constructor() {
     this.head = null;
     this.tail = null;
@@ -57,4 +57,51 @@ class LinkedList {
     }
     this.size++;
   }
+  removeFromFront() {
+    if (this.isEmpty()) {
+      return null;
+    }
+
+    //we will remove head node and get hold of the value of the node
+    const valuee = this.head.value;
+    this.head = this.head.next; // here we are making next of the to be deletd head the new head of list
+    this.size--;
+    return valuee;
+  }
+  removeFromEnd() {
+    if (this.isEmpty()) {
+      return null;
+    }
+    const value = this.tail.value;
+    if (this.size == 1) {
+      //it will check if only one node is in list then we will make both head and tail null
+      this.head = null;
+      this.tail = null;
+    } else {
+      //if nodes are more than 1 in list
+      let prev = this.head;
+      while (prev.next !== this.tail) {
+        prev = prev.next;
+      }
+      //loop will execute only when we are on prev  node before tail
+      prev.next = null; //here we are making one node before tail's prev to null
+      this.tail = prev;
+    }
+    this.size--;
+    return value;
+  }
 }
+const listwithTail = new LinkedListWithTail();
+console.log("list mt?", listwithTail.isEmpty());
+console.log("list size?", listwithTail.getSize());
+listwithTail.print();
+listwithTail.append(1); //it has constant time complexity O(1)
+listwithTail.append(2);
+listwithTail.append(3);
+listwithTail.prepend(0); //it has constant time complexity O(1)
+listwithTail.print();
+listwithTail.removeFromEnd(); //it has linear time complexity O(n)
+listwithTail.print();
+
+listwithTail.removeFromFront(); //it has constant time complexity O(1)
+listwithTail.print();
