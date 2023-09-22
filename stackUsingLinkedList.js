@@ -91,19 +91,38 @@ class LinkedListWithTail {
     return value;
   }
 }
-const listwithTail = new LinkedListWithTail();
-console.log("list mt?", listwithTail.isEmpty());
-console.log("list size?", listwithTail.getSize());
-listwithTail.print();
-listwithTail.append(1); //it has constant time complexity O(1)
-listwithTail.append(2);
-listwithTail.append(3);
-listwithTail.prepend(0); //it has constant time complexity O(1)
-listwithTail.print();
-listwithTail.removeFromEnd(); //it has linear time complexity O(n)
-listwithTail.print();
-
-listwithTail.removeFromFront(); //it has constant time complexity O(1)
-listwithTail.print();
-
-module.exports = LinkedListWithTail;
+class Stack {
+  constructor() {
+    this.list = new LinkedListWithTail();
+  }
+  push(value) {
+    //it will push to top of stack which we can consider as head of list
+    this.list.prepend(value);
+  }
+  pop() {
+    return this.list.removeFromFront(); //as we are considering head as the point of insertion and deletion
+  }
+  peek() {
+    return this.list.head.value;
+  }
+  isEmpty() {
+    return this.list.isEmpty();
+  }
+  getSize() {
+    return this.list.getSize();
+  }
+  print() {
+    return this.list.print();
+  }
+}
+const stack = new Stack();
+console.log(stack.isEmpty());
+stack.push(10);
+stack.push(20);
+stack.push(30);
+stack.print();
+console.log(stack.getSize());
+console.log(stack.pop());
+stack.print();
+console.log(stack.getSize());
+console.log(stack.peek());
