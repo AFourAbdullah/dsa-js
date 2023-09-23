@@ -45,8 +45,33 @@ class BinarySearchTree {
       }
     }
   }
+  search(root, value) {
+    if (!root) {
+      return false;
+    } else {
+      //here we will do following
+      // first we will see if root node has that value
+      // if root donot has that value then we will compare value to root node value if value<root.value we will go to left subtree of root node and then compare value with root node of that subtree and so on //
+      // if root donot has that value then we will compare value to root node value if value>root.value we will go to right subtree of root node and then compare value with root node of that subtree and so on //
+      if (root.value == value) {
+        return `The searched value is present and it is: ${root.value}`;
+      } else if (value < root.value) {
+        return this.search(root.left, value);
+      } else {
+        return this.search(root.right, value);
+      }
+    }
+  }
 }
 
 const bstree1 = new BinarySearchTree();
 console.log("Tree is empty?", bstree1.isEmpty());
 console.log(bstree1.root, "root");
+bstree1.insert(10);
+bstree1.insert(5);
+bstree1.insert(15);
+console.log(bstree1.search(bstree1.root, 10));
+console.log(bstree1.search(bstree1.root, 5));
+console.log(bstree1.search(bstree1.root, 15));
+console.log(bstree1.search(bstree1.root, 35));
+console.log(bstree1.search(bstree1.root, 135));
