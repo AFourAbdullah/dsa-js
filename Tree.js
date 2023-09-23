@@ -16,6 +16,6 @@ class BinarySearchTree {
   }
 }
 
-const tree1 = new BinarySearchTree();
-console.log(tree1.isEmpty());
-console.log(tree1.root, "root");
+const bstree1 = new BinarySearchTree();
+console.log("Tree is empty?", bstree1.isEmpty());
+console.log(bstree1.root, "root");
