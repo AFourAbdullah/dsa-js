@@ -84,6 +84,14 @@ class BinarySearchTree {
     }
   }
   breadthFirstSearch() {
+    //in breadth first search we make use of queue
+    // first we enque root node dequue to read its value and enque left node of root node and right node of root node and repeat the same
+    // root is 10 q=[10] deque 10 and read it and enquue its left then righ
+    // q1=[5,15] //now repeat same steps for 5
+    // // 5 is dequed and it is read then we add its left 3 and righht 7 to q1
+    // q1=[15,3,7]
+    // continue until all nodes are traversed and if there are no child nodes for any node no need to enqueue that node's children b/c they don't exist
+    //so to sum up in bfs we traverse all nodes at a level then move on to next level
     const q = [];
     q.push(this.root);
     while (q.length !== 0) {
@@ -98,14 +106,21 @@ class BinarySearchTree {
     }
   }
 
-  //in breadth first search we make use of queue
-  // first we enque root node dequue to read its value and enque left node of root node and right node of root node and repeat the same
-  // root is 10 q=[10] deque 10 and read it and enquue its left then righ
-  // q1=[5,15] //now repeat same steps for 5
-  // // 5 is dequed and it is read then we add its left 3 and righht 7 to q1
-  // q1=[15,3,7]
-  // continue until all nodes are traversed and if there are no child nodes for any node no need to enqueue that node's children b/c they don't exist
-  //so to sum up in bfs we traverse all nodes at a level then move on to next level
+  //in bst the left most node is the minimum and right most node is the maximum of tree
+  min(root) {
+    if (!root.left) {
+      return root.value;
+    } else {
+      return this.min(root.left);
+    }
+  }
+  max(root) {
+    if (!root.right) {
+      return root.value;
+    } else {
+      return this.max(root.right);
+    }
+  }
 }
 
 const bstree1 = new BinarySearchTree();
@@ -126,4 +141,6 @@ bstree1.insert(7);
 // bstree1.preOrder(bstree1.root);
 // bstree1.postorder(bstree1.root);
 // bstree1.inOrder(bstree1.root);
-bstree1.breadthFirstSearch();
+// bstree1.breadthFirstSearch();
+console.log(bstree1.min(bstree1.root));
+console.log(bstree1.max(bstree1.root));
