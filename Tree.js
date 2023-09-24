@@ -62,6 +62,27 @@ class BinarySearchTree {
       }
     }
   }
+  preOrder(root) {
+    if (root) {
+      console.log(root.value);
+      this.preOrder(root.left);
+      this.preOrder(root.right);
+    }
+  }
+  inOrder(root) {
+    if (root) {
+      this.inOrder(root.left);
+      console.log(root.value);
+      this.inOrder(root.right);
+    }
+  }
+  postorder(root) {
+    if (root) {
+      this.postorder(root.left);
+      this.postorder(root.right);
+      console.log(root.value);
+    }
+  }
 }
 
 const bstree1 = new BinarySearchTree();
@@ -70,8 +91,15 @@ console.log(bstree1.root, "root");
 bstree1.insert(10);
 bstree1.insert(5);
 bstree1.insert(15);
-console.log(bstree1.search(bstree1.root, 10));
-console.log(bstree1.search(bstree1.root, 5));
-console.log(bstree1.search(bstree1.root, 15));
-console.log(bstree1.search(bstree1.root, 35));
-console.log(bstree1.search(bstree1.root, 135));
+// bstree1.insert(18);
+bstree1.insert(3);
+bstree1.insert(7);
+// bstree1.insert(20);
+// console.log(bstree1.search(bstree1.root, 10));
+// console.log(bstree1.search(bstree1.root, 5));
+// console.log(bstree1.search(bstree1.root, 15));
+// console.log(bstree1.search(bstree1.root, 35));
+// console.log(bstree1.search(bstree1.root, 135));
+bstree1.preOrder(bstree1.root);
+// bstree1.postorder(bstree1.root);
+// bstree1.inOrder(bstree1.root);
