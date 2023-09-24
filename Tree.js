@@ -121,6 +121,43 @@ class BinarySearchTree {
       return this.max(root.right);
     }
   }
+  delete(value) {
+    /* in deletion three scenarios:
+    1=if npde to be deleted is leaf node i.e it donot have any child node left and right both are null in such case we simple remove the node 
+     2=if npde to be deleted  has only one child node left or right  in such case we simple remove the node  and place its only child at its position
+    
+       3=if npde to be deleted  has only two children nodes in such case we simple remove the node  and place its inorder successor which is the  node with least value in its right subtree at its position this will ensure that rules of bst are not violated
+    */
+    this.root = this.deleteNode(this.root, value);
+  }
+  deleteNode(root, value) {
+    if (root == null) {
+      return root;
+    }
+    if (value < root.value) {
+      root.left = this.deleteNode(root.left, value);
+    } else if (value > root.value) {
+      root.right = this.deleteNode(root.right, value);
+    } else {
+      //now here we are with the node which has the value
+      if (!root.left && !root.right) {
+        //here we are handling 1st scenario
+        return null;
+      }
+      //here we are handling 2nd scenario
+
+      if (!root.left) {
+        return root.right;
+      } else if (!root.right) {
+        return root.left;
+      } else {
+        //here we are handling 3rd scenario
+        root.value = this.min(root.right);
+        root.right = this.deleteNode(root.right, root.value);
+      }
+    }
+    return root;
+  }
 }
 
 const bstree1 = new BinarySearchTree();
@@ -131,7 +168,9 @@ bstree1.insert(5);
 bstree1.insert(15);
 // bstree1.insert(18);
 bstree1.insert(3);
-bstree1.insert(7);
+bstree1.insert(2);
+bstree1.insert(17);
+// bstree1.insert(7);
 // bstree1.insert(20);
 // console.log(bstree1.search(bstree1.root, 10));
 // console.log(bstree1.search(bstree1.root, 5));
@@ -142,5 +181,18 @@ bstree1.insert(7);
 // bstree1.postorder(bstree1.root);
 // bstree1.inOrder(bstree1.root);
 // bstree1.breadthFirstSearch();
-console.log(bstree1.min(bstree1.root));
-console.log(bstree1.max(bstree1.root));
+// // console.log(bstree1.min(bstree1.root));
+// // console.log(bstree1.max(bstree1.root));
+// console.log("");
+// console.log("");
+// console.log("");
+// bstree1.delete(2);
+// bstree1.breadthFirstSearch();
+// console.log("");
+
+// bstree1.delete(15);
+// bstree1.breadthFirstSearch();
+// console.log("");
+
+bstree1.delete(10);
+bstree1.breadthFirstSearch();
