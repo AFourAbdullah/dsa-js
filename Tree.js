@@ -196,3 +196,6 @@ bstree1.insert(17);
 
 bstree1.delete(10);
 bstree1.breadthFirstSearch();
+
+
+//time
