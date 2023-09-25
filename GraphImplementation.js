@@ -21,6 +21,17 @@ class Graph {
     this.adjacencyList[vertex2].add(vertex1); // athis is to ensure that vertex 2 and vertex 1 are both adjacent to each other since we are working with undirected graphs  //for example if we Have A --B so adjaceny list of A will have B and list of B wil have A
     // in general it mean that edges exists b/w A to B and B to A in undirected graphs
   }
+  display() {
+    //it will display all the vertices' adjaceny list
+    for (let vertex in this.adjacencyList) {
+      console.log(vertex + "->", [...this.adjacencyList[vertex]]); //we are using spread operator b/c the adjacency list of vertex is Set
+    }
+  }
+  hasEdge(v1, v2) {
+    // ..this will check if an edge exists b/w two vertices or not
+    return this.adjacencyList[v1].has(v2); //has method is Set builtin method
+    // we can also check for this.adjacencyList[v1].has(v2) but since our add edge works correctly there is no need
+  }
 }
 const graph = new Graph();
 graph.addVertex("A");
@@ -30,3 +41,7 @@ graph.addVertex("C");
 graph.addEdge("A", "B");
 graph.addEdge("B", "C");
 graph.addEdge("D", "E");
+graph.display();
+console.log(graph.hasEdge("A", "B"));
+console.log(graph.hasEdge("C", "B"));
+console.log(graph.hasEdge("C", "E"));
