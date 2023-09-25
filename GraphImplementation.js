@@ -30,7 +30,21 @@ class Graph {
   hasEdge(v1, v2) {
     // ..this will check if an edge exists b/w two vertices or not
     return this.adjacencyList[v1].has(v2); //has method is Set builtin method
-    // we can also check for this.adjacencyList[v1].has(v2) but since our add edge works correctly there is no need
+    // we can also check for this.adjacencyList[v1].has(v2) but since our addedge fucntion works correctly there is no need
+  }
+  removeEdge(v1, v2) {
+    this.adjacencyList[v1].delete(v2); //delete is builit in for js sets
+    this.adjacencyList[v2].delete(v1); //dlete for both vertecies
+  }
+  removeVertex(vertex) {
+    if (!this.adjacencyList[vertex]) {
+      return `vertex: ${vertex} donot exist in graph`;
+    }
+    for (let adjacenctVertex of this.adjacencyList[vertex]) {
+      this.removeEdge(adjacenctVertex, vertex); //this loop will ensure that every edge of to be dleetd vertex is removed
+    }
+    //now we will use built in delete
+    delete this.adjacencyList[vertex];
   }
 }
 const graph = new Graph();
@@ -40,8 +54,12 @@ graph.addVertex("C");
 
 graph.addEdge("A", "B");
 graph.addEdge("B", "C");
-graph.addEdge("D", "E");
+// graph.addEdge("D", "E");
 graph.display();
 console.log(graph.hasEdge("A", "B"));
 console.log(graph.hasEdge("C", "B"));
-console.log(graph.hasEdge("C", "E"));
+// console.log(graph.hasEdge("C", "E"));
+// graph.removeEdge("D", "E");
+// console.log(graph.hasEdge("D", "E"));
+graph.removeVertex("B");
+graph.display();
