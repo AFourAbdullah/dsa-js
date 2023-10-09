@@ -63,3 +63,6 @@ console.log(graph.hasEdge("C", "B"));
 // console.log(graph.hasEdge("D", "E"));
 graph.removeVertex("B");
 graph.display();
+
+
+//all methods has constant time complexity but time complexity of remove vertex depends on number of adjacent matrix
