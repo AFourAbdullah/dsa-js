@@ -10,10 +10,13 @@ class Stack {
     return elementREmoved;
   }
   peek() {
-    return this.items[this.items.length - 1];
+    if (!this.isEMpty()) {
+      return this.items[this.items.length - 1];
+    }
+    return null;
   }
   isEMpty() {
-    return this.items == 0;
+    return this.items.length == 0;
   }
   size() {
     return this.items.length;

@@ -43,3 +43,42 @@
 // Case 1: FRONT = 0 && REAR == SIZE - 1
 // Case 2: FRONT = REAR + 1
 // The second case happens when REAR starts from 0 due to circular increment and when its value is just 1 less than FRONT, the queue is full.
+class Queue {
+  constructor(props) {
+    this.items = [];
+  }
+  enqueue(element) {
+    this.items.push(element);
+  }
+  dequeue() {
+    return this.items.shift();
+  }
+  isEMpty() {
+    return this.items.length == 0;
+  }
+  peek() {
+    if (!this.isEMpty()) {
+      return this.items[0];
+    }
+    return "queue is empty";
+  }
+  size() {
+    return this.items.length;
+  }
+  print() {
+    console.log(this.items.toString());
+  }
+}
+const queue = new Queue();
+console.log(queue.isEMpty());
+queue.enqueue(33);
+queue.enqueue(93);
+queue.enqueue(43);
+console.log(queue.isEMpty());
+console.log(queue.peek());
+queue.print();
+queue.dequeue();
+queue.print();
+queue.dequeue();
+queue.dequeue();
+queue.print();
